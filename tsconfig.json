@@ -1,0 +1,28 @@
+{
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es6",
+    "jsx": "react",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitAny": false,
+    "removeComments": false,
+    "sourceMap": false,
+    "inlineSourceMap": true,
+    "noEmitHelpers": true,
+    "types": [
+      "node","jasmine"
+    ]
+  },
+  "awesomeTypescriptLoaderOptions": {
+    "useBabel": true,
+    "useCache": false,
+    "emitRequireType": false
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
