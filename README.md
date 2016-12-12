@@ -25,30 +25,6 @@ minified version of the client.
 
 Open `http://localhost:8080` in your browser.
 
-
-### Tests
-
-#### Single Run
-```bash
-$ npm run test
-```
-
-#### Watch Files
-```bash
-$ npm run test:watch
-```
-
-#### Coverage
-```bash
-$ npm run cover
-```
-
-#### Connecting to remote APIs
-
-Both the devmode and production servers provide a way to proxy requests to
-remote HTTP APIs.  This can be useful for working around CORS issues when
-developing your software.
-
 ## License
 
 [MIT License][MIT]
