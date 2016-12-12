@@ -2,12 +2,12 @@ import { Map } from 'immutable';
 import * as chai from 'chai';
 import fireAction from '../utils/fire-action';
 
-import counterReducer from '../../reducers/counter';
+import counterReducer from '../../src/reducers/counter';
 
 import {
   INCREMENT_COUNTER,
   DECREMENT_COUNTER,
-} from '../../constants';
+} from '../../src/constants';
 
 let state = counterReducer();
 

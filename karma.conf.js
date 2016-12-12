@@ -5,7 +5,6 @@
 var webpackConfig = require("./webpack.config");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const SplitByPathPlugin = require('webpack-split-by-path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
@@ -44,8 +43,8 @@ module.exports = function(config) {
         * http://karma-runner.github.io/0.13/config/files.html
         */
       files: [
-          "src/tests/**/*.test.tsx",
-          "src/tests/**/*.test.ts"
+          "test/**/*.test.tsx",
+          "test/**/*.test.ts"
       ],
 
       /*
@@ -75,8 +74,8 @@ module.exports = function(config) {
         * npm module to be npm installed and added to the "plugins" field.
         */
       preprocessors: {
-          "src/tests/**/*.test.tsx": ["webpack"],
-          "src/tests/**/*.test.ts": ["webpack"] // Using karma-webpack npm module
+          "test/**/*.test.tsx": ["webpack"],
+          "test/**/*.test.ts": ["webpack"] // Using karma-webpack npm module
       },
 
       /*
