@@ -20,12 +20,12 @@ const basePlugins = [
     __REZI_ENV__: JSON.stringify(getApiUrl(process.env.REZI_ENV || null)),
     __REDIRECT__: JSON.stringify(process.env.REDIRECT_URL || null),
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-  }),  
+  }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
     minChunks: Infinity,
     filename: 'vendor.[hash].js'
-  }),
+  }),  
   new HtmlWebpackPlugin({
     template: './src/index.html',
     inject: 'body',

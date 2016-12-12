@@ -16,6 +16,7 @@ exports.tsx = {
 exports.istanbulInstrumenter = {
   test: /^(.(?!\.test))*\.tsx?$/,
   loader: 'istanbul-instrumenter-loader',
+  enforce: "post",
   query: {
     embedSource: true,
   },

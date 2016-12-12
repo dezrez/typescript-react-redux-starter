@@ -1,20 +1,20 @@
 import { Map } from 'immutable';
+import * as chai from 'chai';
+import fireAction from '../utils/fire-action';
 
-import fireAction from '../../test-utils/fire-action';
-
-import counterReducer from './counter';
+import counterReducer from '../../reducers/counter';
 
 import {
   INCREMENT_COUNTER,
   DECREMENT_COUNTER,
-} from '../constants';
+} from '../../constants';
 
 let state = counterReducer();
 
-describe('counter reducer', () => {
+describe('Counter Reducer', () => {
   describe('inital state', () => {
     it('should be a Map', () => {
-      expect(Map.isMap(state)).toBe(true);
+      chai.assert.isTrue(Map.isMap(state));
     });
   });
 
@@ -22,7 +22,7 @@ describe('counter reducer', () => {
     it('should increment state.count', () => {
       const previousValue = state.get('count');
       state = fireAction(counterReducer, state, INCREMENT_COUNTER);
-      expect(state.get('count')).toBe(previousValue + 1);
+      chai.assert.equal(state.get('count'), previousValue + 1);
     });
   });
 
@@ -30,7 +30,7 @@ describe('counter reducer', () => {
     it('should decrement state.count', () => {
       const previousValue = state.get('count');
       state = fireAction(counterReducer, state, DECREMENT_COUNTER);
-      expect(state.get('count')).toBe(previousValue - 1);
+      chai.assert.equal(state.get('count'), previousValue - 1);
     });
   });
 });

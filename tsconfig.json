@@ -13,7 +13,7 @@
     "inlineSourceMap": true,
     "noEmitHelpers": true,
     "types": [
-      "node","jasmine"
+      "node","mocha"
     ]
   },
   "awesomeTypescriptLoaderOptions": {
