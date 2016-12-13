@@ -108,8 +108,8 @@ module.exports = function(config) {
             new webpack.DefinePlugin({
               __DEV__: process.env.NODE_ENV !== 'production',
               __TEST__: JSON.stringify(process.env.TEST || false),
-              __AUTH_URL__: JSON.stringify(getEnv(process.env.REZI_ENV || null)),
-              __REZI_ENV__: JSON.stringify(getApiUrl(process.env.REZI_ENV || null)),
+              __AUTH_URL__: JSON.stringify(process.env.REZI_ENV || null),
+              __REZI_ENV__: JSON.stringify(process.env.REZI_ENV || null),
               __REDIRECT__: JSON.stringify(process.env.REDIRECT_URL || null),
               'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
             }),
@@ -130,29 +130,3 @@ module.exports = function(config) {
       }
   });
 };
-
-function getEnv(env) {
-    var baseUrl = 'https://dezrez-core-auth-dev.dezrez.com';
-    switch (env) {
-        case 'uat':
-            baseUrl = 'https://dezrez-core-auth-uat.dezrez.com';
-            break;
-        case 'live':
-            baseUrl = 'https://auth.dezrez.com';
-            break;
-    }
-    return baseUrl;
-}
-
-function getApiUrl(env) {
-  var apiUrl = 'https://localapi.dezrez.com';
-    switch (env) {
-        case 'uat':
-            apiUrl = 'https://core-api-uat.dezrez.com';
-            break;
-        case 'live':
-            apiUrl = 'https://api.dezrez.com';
-            break;
-    }
-    return apiUrl;
-}
