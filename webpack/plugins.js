@@ -15,7 +15,6 @@ const basePlugins = [
   new webpack.DefinePlugin({
     __DEV__: process.env.NODE_ENV !== 'production',
     __TEST__: JSON.stringify(process.env.TEST || false),
-    __AUTH_URL__: JSON.stringify(process.env.REZI_ENV || null),
     __REZI_ENV__: JSON.stringify(process.env.REZI_ENV || null),
     __REDIRECT__: JSON.stringify(process.env.REDIRECT_URL || null),
     'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
