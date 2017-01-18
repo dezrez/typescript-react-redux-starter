@@ -11,8 +11,8 @@ export const tokenUrl: string =
 export const ApiUrl: string = getApiUrl(__REZI_ENV__);
 
 export const accessScope: string = 'impersonate_user';
-export const clientId: string = 'YOUR_CLIENT_ID';
-export const clientPassword: string = 'YOUR_CLIENT_SECRET';
+export const clientId: string = 'ReziRedux';
+export const clientPassword: string = 'GdVXxAAxQ4zVE7WTJaISkkJvD9wTYI1EWCVnKoonnA';
 
 
 function getEnv(env) {

@@ -1,6 +1,4 @@
 import isPromise from '../utils/is-promise';
-import * as objectAssign from 'object-assign';
-
 
 export default function promiseMiddleware({ dispatch }) {
   return next => action => {
@@ -15,7 +13,7 @@ export default function promiseMiddleware({ dispatch }) {
    /**
     * Dispatch the pending action
     */
-    dispatch( objectAssign({},
+    dispatch( Object.assign({},
       { type: PENDING },
       data ? { payload: data } : {},
       meta ? { meta } : {}

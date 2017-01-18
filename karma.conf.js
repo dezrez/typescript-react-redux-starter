@@ -43,6 +43,7 @@ module.exports = function(config) {
         * http://karma-runner.github.io/0.13/config/files.html
         */
       files: [
+          'node_modules/babel-polyfill/dist/polyfill.js',
           "test/**/*.test.tsx",
           "test/**/*.test.ts"
       ],

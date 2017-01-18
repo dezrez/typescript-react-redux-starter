@@ -2,6 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import { Map } from 'immutable';
 import { logoutUser, getUserDetails } from '../actions/session';
 import Button from '../components/button';
 import Content from '../components/content';
@@ -15,7 +16,7 @@ import DevTools from './dev-tools';
 declare const __DEV__: boolean; // from webpack
 
 interface IAppProps extends React.Props<any> {
-  session: any;
+  session: Map<any, any>;
   location: any;
   router: any;
   logout: () => void;
