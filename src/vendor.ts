@@ -1,4 +1,4 @@
-import 'babel-polyfill';
+import 'es6-shim';
 import 'ts-helpers';
 
 import 'react';

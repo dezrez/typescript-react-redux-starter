@@ -1,7 +1,3 @@
-import 'babel-polyfill';
-
-import 'ts-helpers';
-
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 

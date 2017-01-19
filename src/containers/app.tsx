@@ -12,7 +12,6 @@ import NavigatorItem from '../components/navigator-item';
 
 import { goToAuth } from '../api/auth/';
 
-import DevTools from './dev-tools';
 declare const __DEV__: boolean; // from webpack
 
 interface IAppProps extends React.Props<any> {
@@ -85,7 +84,6 @@ class App extends React.Component<IAppProps, void> {
         <Content isVisible={true}>
           { children }
         </Content>
-        { __DEV__ ? <DevTools /> : null }
       </div>
     );
   };

@@ -28,9 +28,7 @@ function configureStore(initialState) {
       applyMiddleware(..._getMiddleware()),
       persistState('session', _getStorageConfig()),
       __DEV__ && environment.devToolsExtension ?
-        environment.devToolsExtension() :
-        f => f,
-      __DEV__ ? DevTools.instrument() : f => f
+        environment.devToolsExtension() : f => f,
       )
   );
 

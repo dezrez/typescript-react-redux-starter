@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+import {fetch} from 'whatwg-fetch';
 import {store} from '../../';
 
 export function post(url, data, headers = {
