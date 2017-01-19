@@ -9,7 +9,7 @@ exports.tslint = {
 
 exports.tsx = {
   test: /\.ts(x?)$/,
-  loader: 'awesome-typescript-loader',//'babel-loader!ts-loader', // replaced awesome-typescript-loader due to TS 2.1.4 bug
+  loader: ['react-hot-loader','awesome-typescript-loader'],//'babel-loader!ts-loader', // replaced awesome-typescript-loader due to TS 2.1.4 bug
   exclude: /node_modules/,
 };
 

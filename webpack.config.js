@@ -10,8 +10,12 @@ const isProd = nodeEnv === 'production';
 module.exports = {
   devtool: isProd ? 'source-map' : 'inline-source-map',
   entry: {
-    main: './src/index.tsx',
-    vendor: './src/vendor.ts'
+    vendor: [
+      './src/vendor.ts'
+    ],
+    main: [
+      './src/index.tsx'
+    ]
   },
   output: {
     path: path.join(__dirname, 'dist'),

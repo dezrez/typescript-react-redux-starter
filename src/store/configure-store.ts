@@ -16,8 +16,6 @@ import promiseMiddleware from '../middleware/promise-middleware';
 import logger from './logger';
 import rootReducer from '../reducers';
 
-import DevTools from '../containers/dev-tools';
-
 declare const __DEV__: boolean; // from webpack
 
 function configureStore(initialState) {
