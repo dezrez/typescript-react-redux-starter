@@ -13,12 +13,12 @@ export default function NavigatorItem({
   children = null,
   isVisible = true,
   to = '',
-  isActive = false
+  isActive = ''
 }: INavigatorItemProps) {
   const navItemClasses = classNames('truncate', {
     hide: !isVisible,
     'nav-item': true,
-    active: isActive
+    active: to === isActive
   });
   
   return (

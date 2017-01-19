@@ -25,7 +25,14 @@ export default (
     <IndexRedirect to="/counter" />
     <Route component={Authenticated}>
       <Route path="counter" component={CounterPage}/>
-      <Route path="about" component={AboutPage}/>
+      <Route path="about" component={AboutPage}>
+        <Route path="counter" component={CounterPage}>
+          <Route path="about" component={AboutPage}>
+            <Route path="counter" component={CounterPage}>
+            </Route>
+          </Route>
+        </Route>
+      </Route>
     </Route>
     <Route path="login" component={LoginPage}/>
     <Route path="auth" component={AuthPage}/>

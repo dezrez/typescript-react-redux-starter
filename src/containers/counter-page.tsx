@@ -48,6 +48,7 @@ class CounterPage extends React.Component<ICounterPageProps, void> {
               decrement={ decreaseCounter } />
           </Column>
         </Row>
+        {this.props.children}
     </Container>
     );
   };

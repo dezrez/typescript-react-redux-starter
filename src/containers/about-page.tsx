@@ -39,6 +39,7 @@ class AboutPage extends React.Component<IAboutPageProps, IAboutPageState> {
             <Button onClick={this.toggle}>Modal Here</Button>
           </Column>
         </Row>
+        {this.props.children}
 
         <Modal isOpen={this.state.modal} toggle={this.toggle}>
             <ModalHeader toggle={this.toggle}>Test Modal</ModalHeader>

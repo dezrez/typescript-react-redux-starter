@@ -58,14 +58,29 @@ class App extends React.Component<IAppProps, void> {
           <Logo />
           <ul className="nav navbar-nav">
             <NavigatorItem
-              isActive={location.pathname === '/'} 
+              isActive={location.pathname} 
               to="/">
               Counter
             </NavigatorItem>
             <NavigatorItem  
-              isActive={location.pathname === '/about'} 
+              isActive={location.pathname} 
               to="/about">
               About Us
+            </NavigatorItem>
+            <NavigatorItem  
+              isActive={location.pathname} 
+              to="/about/counter">
+              Sub Counter
+            </NavigatorItem>
+            <NavigatorItem  
+              isActive={location.pathname} 
+              to="/about/counter/about">
+              Sub Sub About Us
+            </NavigatorItem>
+            <NavigatorItem  
+              isActive={location.pathname} 
+              to="/about/counter/about/counter">
+              Sub Sub Sub Counter
             </NavigatorItem>
           </ul>
 
