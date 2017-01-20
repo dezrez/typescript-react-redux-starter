@@ -1,11 +1,11 @@
-import {fetch} from 'whatwg-fetch';
+import 'whatwg-fetch';
 import {store} from '../../';
 
 export function post(url, data, headers = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 }) {
-  return fetch(url, {
+  return (<any>window).fetch(url, {
     method: 'post',
     headers: headers,
     body: JSON.stringify(data)
@@ -14,7 +14,7 @@ export function post(url, data, headers = {
 }
 
 export function get(url, headers = {}) {
-  return fetch(url, {
+  return (<any>window).fetch(url, {
     method: 'get',
     headers: headers
   })

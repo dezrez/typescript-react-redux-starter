@@ -39,7 +39,7 @@ class CounterPage extends React.Component<ICounterPageProps, void> {
               data-testid="counter-heading"
               className="center caps"
               id="qa-counter-heading">
-              Counter
+              Counters
             </h2>
 
             <Counter
