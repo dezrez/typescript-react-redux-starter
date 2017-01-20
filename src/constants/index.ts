@@ -17,3 +17,7 @@ export const UPDATE_LAST_ROUTE = 'App/UPDATE_LAST_ROUTE';
 
 export const LOGOUT_USER = 'App/LOGOUT_USER';
 export const FORM_RESET = 'redux-form/RESET';
+
+export const JSON_PHOTOS_PENDING = 'App/JSON_PHOTOS_PENDING';
+export const JSON_PHOTOS_SUCCESS = 'App/JSON_PHOTOS_SUCCESS';
+export const JSON_PHOTOS_ERROR = 'App/JSON_PHOTOS_ERROR';
