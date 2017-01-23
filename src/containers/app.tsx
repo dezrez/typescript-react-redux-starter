@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { Map } from 'immutable';
 import { logoutUser, getUserDetails } from '../actions/session';
 import Button from '../components/button';
 import Content from '../components/content';
@@ -10,22 +9,27 @@ import Logo from '../components/logo';
 import Navigator from '../components/navigator';
 import NavigatorItem from '../components/navigator-item';
 
+import { IAppState } from '../reducers';
+import { ISession } from '../reducers/session';
+
 import { goToAuth } from '../api/auth/';
 
 declare const __DEV__: boolean; // from webpack
 
 interface IAppProps extends React.Props<any> {
-  session: Map<any, any>;
+  session: ISession;
   location: any;
   router: any;
+  user: any;
   logout: () => void;
   getUser: () => void;
 };
 
-function mapStateToProps(state, ownProps) {
+function mapStateToProps(state: IAppState, ownProps) {
   return {
     session: state.session,
-    location: ownProps.location
+    location: ownProps.location,
+    user: state.session.user
   };
 }
 
@@ -39,18 +43,18 @@ function mapDispatchToProps(dispatch) {
 class App extends React.Component<IAppProps, void> {
   componentWillMount() {
     const { session, getUser } = this.props;
-    const token = session.get('token', false);
+    const token = session.token;
     const isLoggedIn = token;
-    if (!session.get('user') && isLoggedIn) {
+    if (!session.user && isLoggedIn) {
       getUser();
     }
   }
 
   render() {
-    const { children, session, location, logout } = this.props;
-    const token = session.get('token', false);
+    const { children, session, location, logout, user } = this.props;
+    const token = session.token;
     const isLoggedIn = token;
-    const contactName = session.getIn(['user', 'ContactName'], null);
+    const contactName = user.ContactName;
 
     return (
       <div>

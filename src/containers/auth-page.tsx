@@ -33,7 +33,7 @@ class AuthPage extends React.Component<IAuthPageProps, void> {
   componentWillMount() {
     const { location, login, session } = this.props;
     let code = (location.query as any).code;
-    const route = session.get('route', '');
+    const route = session.route;
     login(code, route);
   }
 

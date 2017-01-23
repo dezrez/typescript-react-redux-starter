@@ -4,10 +4,10 @@ import { reducer } from 'redux-form';
 import { counterReducer, ICounter } from './counter';
 import { jsonReducer, IJson } from './json';
 import { reconcileReducer, IReconcile } from './reconcile';
-import session from './session';
+import { sessionReducer, ISession } from './session';
 
 const rootReducer = combineReducers({
-  session,
+  session: sessionReducer,
   counter: counterReducer,
   routing: routerReducer,
   form: reducer,
@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
 
 export interface IAppState {
   counter: ICounter; 
-  session: any; 
+  session: ISession; 
   json: IJson;
   reconcile: IReconcile;
 }

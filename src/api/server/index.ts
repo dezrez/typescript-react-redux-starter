@@ -25,7 +25,7 @@ export function get(url, headers = {}) {
 export const getDefaultRequestHeaders = () => { 
   return {
     'Content-Type': 'application/json',
-    'Authorization': `bearer ${store.getState().session.get('token')}`,
+    'Authorization': `bearer ${store.getState().session.token}`,
     'Rezi-Api-Version': '1'
   };
 };
