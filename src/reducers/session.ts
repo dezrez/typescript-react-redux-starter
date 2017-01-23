@@ -9,9 +9,9 @@ import {
   UPDATE_LAST_ROUTE
 } from '../constants';
 
-import { Map, fromJS } from 'immutable';
+import { fromJS } from 'immutable';
 
-const INITIAL_STATE: Map<any, any> = fromJS({
+const INITIAL_STATE = fromJS({
   token: null,
   hasError: false,
   isLoading: false,

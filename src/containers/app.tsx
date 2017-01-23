@@ -82,6 +82,11 @@ class App extends React.Component<IAppProps, void> {
               to="/about/counter/about/counter">
               Sub Sub Sub Counter
             </NavigatorItem>
+            <NavigatorItem  
+              isActive={location.pathname} 
+              to="/reconcile">
+              Reconcile
+            </NavigatorItem>
           </ul>
 
           <ul className="nav navbar-nav float-xs-right">

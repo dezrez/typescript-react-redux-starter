@@ -6,6 +6,7 @@ import AboutPage from '../containers/about-page';
 import CounterPage from '../containers/counter-page';
 import AuthPage from '../containers/auth-page';
 import LoginPage from '../containers/login-page';
+import ReconcilePage from '../containers/reconcile-page';
 
 import { routerActions } from 'react-router-redux';
 
@@ -33,6 +34,7 @@ export default (
           </Route>
         </Route>
       </Route>
+      <Route path="reconcile" component={ReconcilePage}/>
     </Route>
     <Route path="login" component={LoginPage}/>
     <Route path="auth" component={AuthPage}/>
