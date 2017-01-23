@@ -40,10 +40,13 @@ export function jsonReducer(state = INITIAL_STATE,
   switch (action.type) {
 
   case JSON_PHOTOS_SUCCESS:
-    return objectAssign<IJson>(state, <IJson>{ photos: state.photos.concat(action.payload) });
+    return objectAssign<IJson>(state, <IJson>{ 
+      photos: state.photos.concat(action.payload) 
+    });
 
   case JSON_PHOTOS_PENDING:
   case JSON_PHOTOS_ERROR:
+    return state;
   default:
     return state;
   }

@@ -2,26 +2,20 @@ import {
     GET_RECONCILE_ITEMS,
     AUTOMATCH_RECONCILE_ITEMS
 } from '../constants';
+import {IReconcile} from '../reducers/reconcile';
 
-// const accountItems = require('../assets/storedAccountData.json');
-// const statementItems = require('../assets/bankStatementData.json');
+import {automatchReconcile} from '../api/reconcile';
 
 export function getReconcileItems() {
     return {
-        type: GET_RECONCILE_ITEMS,
-        payload: {
-            accountItems: [],
-            statementItems: []
-        }
+        type: GET_RECONCILE_ITEMS
     };
 }
 
-export function automatchReconcileItems() {
+export function automatchReconcileItems(reconcile: IReconcile) {
     return {
         type: AUTOMATCH_RECONCILE_ITEMS,
-        payload: {
-            accountItems: [],
-            statementItems: []
-        }
+        payload: 
+            automatchReconcile(reconcile.accountItems, reconcile.statementItems)
     };
 }

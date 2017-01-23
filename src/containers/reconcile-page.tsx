@@ -7,41 +7,74 @@ import {Container, Row, Column} from '../components/layout';
 import Button from '../components/button';
 
 import {IAppState} from '../reducers';
-import {IPhoto} from '../models/photo';
-import {getJsonFromApi} from '../actions/json';
+import {getReconcileItems, automatchReconcileItems} from '../actions/reconcile';
+import {IReconcile} from '../reducers/reconcile';
 
 interface IReconcilePageProps extends React.Props<any> {
-  photos: IPhoto[];
-  getPhotos: () => void;
+  reconcile: IReconcile;
+  getReconcileItems: () => void;
+  performAutomatch: (reconcile: IReconcile) => void;
 };
 
 function mapStateToProps(state: IAppState) {
   return {
-    photos: state.json.photos
+    reconcile: state.reconcile
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getPhotos: (): void => dispatch(getJsonFromApi('photos'))
+    getReconcileItems: (): void => dispatch(getReconcileItems()),
+    performAutomatch: (reconcile: IReconcile): void => 
+      dispatch(automatchReconcileItems(reconcile))
   };
 }
 
 class ReconcilePage extends React.Component<IReconcilePageProps, void> {
+  componentWillMount() {
+    this.props.getReconcileItems();
+  }
+
+  onAutomatch = () => {
+    this.props.performAutomatch(this.props.reconcile);
+  }
+
   render() {
-    const { 
-      photos, 
-      getPhotos  
-    } = this.props;
+    const accountItems = 
+      this.props.reconcile.accountItems.filter(i => !i.matchedId);
+    const statementItems = 
+      this.props.reconcile.statementItems.filter(i => !i.matchedId);
+
+    const columns = ['Account Number', 'Amount'];
+    const dataSelectors = ['accountNumber', 'amount'];
 
     return (
       <Container testid="counter">
         <h2>Reconcile</h2>
         <Row>
-          <Table 
-            columns={['Album Id', 'Id', 'Title']} 
-            dataSelectors={['albumId', 'id', 'title']}
-            data={photos} />
+          <Button
+            testid="photos-getButton"
+            id="qa-photos-get-button"
+            className="col-xs-2"
+            onClick={this.onAutomatch}>
+            Automatch
+          </Button>
+        </Row>
+        
+        <Row>
+          <Column size={6} >
+            <Table 
+              columns={columns} 
+              dataSelectors={dataSelectors} 
+              data={accountItems} />
+          </Column>
+
+          <Column size={6} >
+            <Table 
+              columns={columns} 
+              dataSelectors={dataSelectors} 
+              data={statementItems} />
+          </Column>
         </Row>
         {this.props.children}
     </Container>
