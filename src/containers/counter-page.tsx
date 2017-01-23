@@ -71,11 +71,11 @@ class CounterPage extends React.Component<ICounterPageProps, void> {
             onClick={getPhotos}>
             Get Photos
           </Button>
+
           <Table 
             columns={['Album Id', 'Id', 'Title']} 
             dataSelectors={['albumId', 'id', 'title']}
-            data={photos}
-          />
+            data={photos} />
         </Row>
         {this.props.children}
     </Container>

@@ -15,14 +15,23 @@ export default function Table({
 }: ITableProps) {
   const tableClasses = classNames('table');
 
-  let rows = [];
-  data.map(row => <TableRow data={row} dataSelectors={dataSelectors}/>);
+  const rows = [];
+  data.map(row => 
+    rows.push(
+      <TableRow 
+        key={Math.random()} 
+        data={row} 
+        dataSelectors={dataSelectors}/>
+    )
+  );
 
   return (
     <table className={ tableClasses }>
         <thead className="thead-default">
             <tr>
-                {columns.map(columnName => <th key={Math.random()}>{columnName}</th>)}
+                {columns.map(columnName => 
+                  <th key={Math.random()}>{columnName}</th>)
+                }
             </tr>
         </thead>
         <tbody>
@@ -34,11 +43,10 @@ export default function Table({
 
 function TableRow({
   dataSelectors = [] as string[],
-  data = {},
+  data = {}
 }) {
-
   return (
-    <tr key={data['id']}>
+    <tr>
         <td>{data[dataSelectors[0]]}</td>
         <td>{data[dataSelectors[1]]}</td>
         <td>{data[dataSelectors[2]]}</td>

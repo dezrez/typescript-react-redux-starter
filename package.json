@@ -14,7 +14,7 @@
     "build:uat": "cross-env NODE_ENV=production REDIRECT_URL=callcentre.dezrez.com REZI_ENV=uat webpack -p",
     "build:live": "cross-env NODE_ENV=production REDIRECT_URL=callcentre.dezrez.com REZI_ENV=live webpack -p",
     "clean": "rimraf dist/",
-    "dev:server": "cross-env NODE_ENV=development PORT=3000 nodemon server/node-server.js",
+    "dev:server": "cross-env NODE_ENV=development PORT=8080 nodemon server/node-server.js",
     "dev:client": "cross-env NODE_ENV=development webpack-dev-server -d --inline --hot --https --progress --no-info",
     "dev": "concurrently -r \"npm run dev:client\"",
     "lint": "npm run lint-ts && npm run lint-js",
