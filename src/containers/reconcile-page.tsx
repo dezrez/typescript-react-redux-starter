@@ -46,6 +46,9 @@ class ReconcilePage extends React.Component<IReconcilePageProps, void> {
   showReconciledItems = () => {
     browserHistory.push('/reconcile/matches');
   }
+  returnToReconcile = () => {
+    browserHistory.goBack();
+  }
 
   render() {
     const accountItems = 
@@ -62,7 +65,15 @@ class ReconcilePage extends React.Component<IReconcilePageProps, void> {
     return (
       <Container testid="counter">
         {this.props.children || showMatches 
-          ? <ReconcileDiffView data={this.props.reconcile} />
+          ? <ReconcileDiffView data={this.props.reconcile}>
+              <Button
+                  testid="reconcile-goback"
+                  id="qa-reconcile-goback-button"
+                  className="col-xs-2"
+                  onClick={this.returnToReconcile}>
+                  Go Back
+                </Button>
+            </ReconcileDiffView>
           : <div>
               <h2>Reconcile</h2>
               <Row>
