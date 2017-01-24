@@ -54,7 +54,10 @@ class App extends React.Component<IAppProps, void> {
     const { children, session, location, logout, user } = this.props;
     const token = session.token;
     const isLoggedIn = token;
-    const contactName = user.ContactName;
+    let contactName = null;
+    if (user) {
+      contactName = user.ContactName;
+    }
 
     return (
       <div>

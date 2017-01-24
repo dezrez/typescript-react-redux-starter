@@ -26,7 +26,7 @@ function mapDispatchToProps(dispatch) {
 class LoginPage extends React.Component<ILoginPageProps, void> {
   componentWillMount() {
     const {location, setRedirectRoute, session} = this.props;
-    if (!session.get('isLoading', false)) {
+    if (!session.isLoading) {
       setRedirectRoute(location.query.redirect);
     }
   }

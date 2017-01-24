@@ -34,7 +34,9 @@ export default (
           </Route>
         </Route>
       </Route>
-      <Route path="reconcile" component={ReconcilePage}/>
+      <Route path="reconcile" component={ReconcilePage}>
+        <Route path="matches" component={ReconcilePage}/>
+      </Route>
     </Route>
     <Route path="login" component={LoginPage}/>
     <Route path="auth" component={AuthPage}/>
