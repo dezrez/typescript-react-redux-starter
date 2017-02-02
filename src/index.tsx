@@ -9,6 +9,22 @@ import routes from './store/routes';
 import configureStore from './store/configure-store';
 import {IAppState} from './reducers';
 
+import { addLocaleData, IntlProvider } from 'react-intl';
+import * as en from 'react-intl/locale-data/en';
+import * as es from 'react-intl/locale-data/es';
+
+declare const __DEV__: boolean;
+const localeData = require(__DEV__ 
+  ? '../build/locales/data.json' 
+  : '../locales/data.json');
+
+addLocaleData([...en, ...es]);
+const language = navigator.language;
+const languageWithoutRegionCode = language.toLowerCase().split(/[_-]+/)[0];
+const messages = localeData[languageWithoutRegionCode] || 
+    localeData[language] || 
+    localeData.en; 
+
 import './styles/bootstrap.scss';
 
 // Set by webpack
@@ -20,11 +36,13 @@ const history = syncHistoryWithStore(browserHistory, store);
 if (!__TEST__) {
   ReactDOM.render(
     <div>
-      <Provider store={ store }>
-        <Router history={ history }>
-          { routes }
-        </Router>
-      </Provider>
+      <IntlProvider locale={language} messages={messages}>
+        <Provider store={ store }>
+          <Router history={ history }>
+            { routes }
+          </Router>
+        </Provider>
+      </IntlProvider>
     </div>,
     document.getElementById('root')
   );

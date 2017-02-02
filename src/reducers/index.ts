@@ -5,15 +5,24 @@ import { counterReducer, ICounter } from './counter';
 import { jsonReducer, IJson } from './json';
 import { reconcileReducer, IReconcile } from './reconcile';
 import { sessionReducer, ISession } from './session';
+import * as Entities from '../store/schema';
 
-const rootReducer = combineReducers({
+let reducers = {
   session: sessionReducer,
   counter: counterReducer,
   routing: routerReducer,
   form: reducer,
   json: jsonReducer,
   reconcile: reconcileReducer
-});
+};
+
+for (let key in Entities) {
+  if (Entities.hasOwnProperty(key)) {
+    let obj = { [key]: Entities[key].reducer };
+    reducers = Object.assign({}, reducers, obj);
+  }
+}
+const rootReducer = combineReducers(reducers);
 
 export interface IAppState {
   counter: ICounter; 

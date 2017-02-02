@@ -1,0 +1,8 @@
+{
+  "en": {
+    "About.greeting": "Test text!!! - {name}"
+  },
+  "es": {
+    "About.greeting": "Hola!!!"
+  }
+}

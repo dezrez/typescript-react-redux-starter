@@ -4,6 +4,8 @@ import Button from '../components/button';
 
 import {Modal, ModalHeader, ModalBody, ModalFooter} from 'reactstrap';
 
+import {FormattedMessage} from 'react-intl';
+
 interface IAboutPageProps extends React.Props<any> {};
 
 interface IAboutPageState {
@@ -34,6 +36,12 @@ class AboutPage extends React.Component<IAboutPageProps, IAboutPageState> {
             <p>
               Rangle.io is a next-generation HTML5 design and development firm
               dedicated to modern, responsive web and mobile applications.
+
+              <FormattedMessage
+                id={ 'About.greeting' }
+                defaultMessage={ 'Welcome to your dashboard, {name}!' }
+                values={{ name: 'Test user' }}
+              />
             </p>
 
             <Button onClick={this.toggle}>Modal Here</Button>

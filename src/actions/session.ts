@@ -11,6 +11,7 @@ import {
   USER_DETAILS_ERROR,
   UPDATE_LAST_ROUTE,
 } from '../constants';
+import {keys} from 'lodash';
 
 export function loginUser(code: string) {
   return (dispatch, getState) => {
@@ -40,8 +41,20 @@ export function getUserDetails() {
       ],
       payload: {
         promise: getDetails()
-          .then((res) => {
-            return res;
+          .then((res: any) => {
+            const normalisedKeys = keys(res.entities);
+            let promiseArray = [];
+            normalisedKeys.forEach(element => {
+              promiseArray.push(dispatch({
+                type: 'ADD_' + element,
+                payload: {
+                  [element]: res.entities[element]
+                }
+              }));
+            });
+            return Promise.all(promiseArray).then(results => {
+              return keys(res.entities['negotiators'])[0];
+            });
           }),
       },
     });

@@ -46,3 +46,5 @@ test/**/*.js.map
 
 # E2E test output
 e2e/robot/test_results
+
+yarn.lock

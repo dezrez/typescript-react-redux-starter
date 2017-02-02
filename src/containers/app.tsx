@@ -13,6 +13,8 @@ import { IAppState } from '../reducers';
 import { ISession } from '../reducers/session';
 
 import { goToAuth } from '../api/auth/';
+import { negotiators } from '../store/schema';
+import { denormalize } from 'normalizr';
 
 declare const __DEV__: boolean; // from webpack
 
@@ -26,10 +28,15 @@ interface IAppProps extends React.Props<any> {
 };
 
 function mapStateToProps(state: IAppState, ownProps) {
+  let denormUser = null;
+  try {
+    denormUser = denormalize(state.session.user, negotiators, state);
+  } catch (error) {} // Swallowing error when entity isn't in store
+
   return {
     session: state.session,
     location: ownProps.location,
-    user: state.session.user
+    user: denormUser,
   };
 }
 
@@ -55,7 +62,7 @@ class App extends React.Component<IAppProps, void> {
     const token = session.token;
     const isLoggedIn = token;
     let contactName = null;
-    if (user) {
+    if (user) {      
       contactName = user.ContactName;
     }
 
