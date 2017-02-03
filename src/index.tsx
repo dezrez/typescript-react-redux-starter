@@ -14,9 +14,7 @@ import * as en from 'react-intl/locale-data/en';
 import * as es from 'react-intl/locale-data/es';
 
 declare const __DEV__: boolean;
-const localeData = require(__DEV__ 
-  ? '../build/locales/data.json' 
-  : '../locales/data.json');
+const localeData = require('../build/locales/data.json');
 
 addLocaleData([...en, ...es]);
 const language = navigator.language;
