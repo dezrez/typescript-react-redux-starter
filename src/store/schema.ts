@@ -1,36 +1,4 @@
-import {schema, Schema} from 'normalizr';
-import * as _ from 'lodash';
-
-export class DezrezEntity extends schema.Entity {
-    reducer = (state = {}, action = { type: '', payload: null }) => {
-        switch (action.type) {
-            case 'ADD_' + this.keyString:
-                return {
-                    ...state,
-                    ...action.payload[this.keyString]
-                };
-            // case 'UPDATE_' + this.keyString:
-            //     return state.map(negs => negs.Id === action.payload.Id 
-            //             ? Object.assign({}, negs, action.payload) 
-            //             : negs);
-            // case 'REMOVE_' + this.keyString:
-            //     const keyId = _.findIndex(state, e => 
-            //         e.Id === action.payload.Id);
-            //     state.splice(keyId, 1);
-            //     return [...state];
-            default:
-                return state;
-        }
-    }
-    
-    keyString: string;
-
-    constructor (key: string, 
-        definition?: Schema, options?: schema.EntityOptions) {
-        super(key, definition, options);
-        this.keyString = key;
-    }
-}
+import { DezrezEntity } from './base-schema';
 
 const dezrezenums = new DezrezEntity('dezrezenums', {}, {idAttribute: 'Id'});
 
