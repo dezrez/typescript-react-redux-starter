@@ -1,32 +1,68 @@
-import 'whatwg-fetch';
 import {store} from '../../';
+import { Config } from '../../constants';
 
-export function post(url, data, headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json'
-}) {
-  return (<any>window).fetch(url, {
-    method: 'post',
-    headers: headers,
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json());
-}
-
-export function get(url, headers = {}) {
-  return (<any>window).fetch(url, {
-    method: 'get',
-    headers: headers
-  })
-  .then(response => response.json());
-}
-
-
-export const getDefaultRequestHeaders = () => { 
-  return {
+export class RequestBase {
+  private BASE_URL = Config.ApiUrl;
+  private SERIVCE_URL: string;
+  headers = new Headers({
     'Content-Type': 'application/json',
-    'Authorization': `bearer ${store.getState().session.token}`,
-    'Rezi-Api-Version': '1'
-  };
-};
+    'Rezi-Api-Version': '1.0'
+  });
 
+  constructor(serviceUrl: string) {
+    this.SERIVCE_URL = serviceUrl;
+  }
+
+  get(url: string, headers?: Headers) {
+    return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('GET', headers))
+    .then(this.checkStatus)
+    .then(res => res.json());
+  }
+
+  post(url: string, data?: any, headers?: Headers) {
+    return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('POST', data, headers))
+    .then(this.checkStatus)
+    .then(res => res.json());
+  }
+
+  put(url: string, data?: any, headers?: Headers) {
+    return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('PUT', data, headers))
+    .then(this.checkStatus)
+    .then(res => res.json());
+  }
+
+  delete(url: string, data?: any, headers?: Headers) {
+    return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('DELETE', data, headers))
+    .then(this.checkStatus)
+    .then(res => res.json());
+  }
+
+  getFormattedApiUrl(urlfragment: string) {
+    if (this.SERIVCE_URL === '' || this.SERIVCE_URL === undefined) {
+      return urlfragment;
+    }
+    return `${this.BASE_URL}/${this.SERIVCE_URL}/${urlfragment}`;
+  }
+
+  private getRequestInfo(method: string, body?: any, headers?: Headers): RequestInit {
+    if (!headers) {
+      this.headers.append('Authorization', `bearer ${store.getState().session.token}`);
+    }
+
+    return {
+      method: method,
+      headers: headers || this.headers,
+      body: JSON.stringify(body)
+    };
+  }
+
+  private checkStatus(response: Response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response
+    } else {
+      var error = new Error(response.statusText)
+      error['response'] = response
+      throw error
+    }
+  }
+}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { logoutUser, getUserDetails } from '../actions/session';
+import { SessionActions } from '../actions/session';
 import Button from '../components/button';
 import Content from '../components/content';
 import Logo from '../components/logo';
@@ -12,7 +12,6 @@ import NavigatorItem from '../components/navigator-item';
 import { IAppState } from '../reducers';
 import { ISession } from '../reducers/session';
 
-import { goToAuth } from '../api/auth/';
 import { negotiators } from '../store/schema';
 import { denormalize } from 'normalizr';
 
@@ -42,8 +41,8 @@ function mapStateToProps(state: IAppState, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    logout: () => dispatch(logoutUser()),
-    getUser: () => dispatch(getUserDetails())
+    logout: () => dispatch(SessionActions.logoutUser()),
+    getUser: () => dispatch(SessionActions.getUserDetails())
   };
 }
 

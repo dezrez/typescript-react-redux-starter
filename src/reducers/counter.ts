@@ -1,7 +1,6 @@
 import {
   INCREMENT_COUNTER,
-  DECREMENT_COUNTER,
-  LOGOUT_USER
+  DECREMENT_COUNTER
 } from '../constants';
 import { fromJS } from 'immutable';
 
@@ -74,9 +73,6 @@ export function counterReducer(state = INITIAL_STATE,
 
   case DECREMENT_COUNTER:
     return objectAssign<ICounter>(state, <ICounter>{ count: state.count - 1 });
-
-  case LOGOUT_USER:
-    return Object.assign({}, state, INITIAL_STATE);
 
   default:
     return state;

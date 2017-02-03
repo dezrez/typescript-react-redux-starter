@@ -1,6 +1,6 @@
 import {IReconcileItem} from '../../models/reconcileItem';
 import {IReconcile} from '../../reducers/reconcile';
-import * as _ from 'lodash';
+import {find, findIndex} from 'lodash';
 
 export function automatchReconcile(
     initialAccountItems: IReconcileItem[], 
@@ -11,9 +11,9 @@ export function automatchReconcile(
     let managedStatementList = [].concat(initialStatementItems);
 
     initialAccountItems.forEach((item: IReconcileItem) => {
-        let matchedItem = _.find(managedStatementList, 
+        let matchedItem = find(managedStatementList, 
             i => i.amount === item.amount);
-        let index = _.findIndex(managedStatementList, 
+        let index = findIndex(managedStatementList, 
             i => i.amount === item.amount);
         if (matchedItem) {
             matchedItem.matchedId = item.id;
@@ -25,7 +25,7 @@ export function automatchReconcile(
     });
     
     managedStatementList.forEach((item: IReconcileItem) => {
-        let matchedItem = _.find(finalStatementItems, i => i.id === item.id);
+        let matchedItem = find(finalStatementItems, i => i.id === item.id);
         if (!matchedItem) {
             finalStatementItems.push(item);
         }

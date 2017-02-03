@@ -40,6 +40,7 @@ export function jsonReducer(state = INITIAL_STATE,
   switch (action.type) {
 
   case JSON_PHOTOS_SUCCESS:
+    debugger;
     return objectAssign<IJson>(state, <IJson>{ 
       photos: state.photos.concat(action.payload) 
     });

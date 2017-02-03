@@ -1,19 +1,19 @@
-import {get, getDefaultRequestHeaders} from '../server';
-import { Config } from '../../constants';
-
-const BASE_URL = Config.ApiUrl + '/api/negotiator';
-
+import { RequestBase } from '../server';
 import { normalize } from 'normalizr';
-import {negotiators} from '../../store/schema';
+import { negotiators } from '../../store/schema';
 
-export function getDetails() {
-    return new Promise((resolve, reject) => {
-      return get(BASE_URL + '/me', getDefaultRequestHeaders())
+export class NegotiatorService extends RequestBase {
+  constructor() {
+    super('/api/negotiator');
+  }
+
+  getDetails() {
+    return this.get('me')
       .then(json => {
         const normalisedData = normalize(json, negotiators);
-        return resolve(normalisedData);
-      })
-      .then(data => data, (err) => 
-        reject(new Error('Failed to find your details')));
-    });
+        return normalisedData;
+      });
+  }
 }
+
+export const negotiatorService = new NegotiatorService();

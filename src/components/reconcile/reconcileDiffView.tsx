@@ -3,7 +3,7 @@ import {IReconcile} from '../../reducers/reconcile';
 
 import {Container, Column, Row} from '../layout';
 
-import * as _ from 'lodash';
+import {find} from 'lodash';
 
 interface IReconcileDiffViewProps extends React.Props<any> {
     data: IReconcile;
@@ -17,7 +17,7 @@ const ReconcileDiffView = ({
     const rows = [];
     if (data && data.accountItems && data.statementItems) {
         rows.push(...data.accountItems.map(item => {
-            const matchedItem = _.find(data.statementItems, 
+            const matchedItem = find(data.statementItems, 
                 i => i.id === item.matchedId);
             if (!matchedItem) { 
                 return null;

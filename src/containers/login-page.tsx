@@ -2,8 +2,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import {Container, Row, Column} from '../components/layout';
 
-import {setRedirect} from '../actions/session';
-import { goToAuth } from '../api/auth/';
+import { SessionActions } from '../actions/session';
+import { authenticationService } from '../api/auth/';
 
 interface ILoginPageProps extends React.Props<any> {
   session: any;
@@ -19,7 +19,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setRedirectRoute: (route): void => dispatch(setRedirect(route))
+    setRedirectRoute: (route): void => dispatch(SessionActions.setRedirect(route))
   };
 }
 
@@ -32,7 +32,7 @@ class LoginPage extends React.Component<ILoginPageProps, void> {
   }
 
   render() {
-    goToAuth();
+    authenticationService.goToAuth();
     return (
       <Container>
       </Container>

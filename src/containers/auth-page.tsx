@@ -1,11 +1,10 @@
 import * as React from 'react';
 import * as Router from 'react-router';
 import { connect } from 'react-redux';
-import * as ReduxRouter from 'react-router-redux';
 
 import {Container, Row, Column} from '../components/layout';
 
-import { loginUser, getUserDetails } from '../actions/session';
+import { SessionActions } from '../actions/session';
 
 interface IAuthPageProps extends React.Props<any> {
   location: Router.LocationDescriptor;
@@ -22,10 +21,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    login: (code: string, route: string) => 
-      dispatch(loginUser(code))
-        .then(() => dispatch(getUserDetails()))
-        .then(() => dispatch(ReduxRouter.push(route === '' ? '/' : route))),
+    login: (code: string, route: string) => dispatch(SessionActions.loginUser(code, route))
   };
 }
 
