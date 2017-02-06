@@ -60,6 +60,7 @@ const prodPlugins = [
       comments: false
     },
   }),
+  new webpack.optimize.AggressiveMergingPlugin()
 ];
 
 module.exports = basePlugins

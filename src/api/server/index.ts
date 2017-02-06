@@ -15,29 +15,29 @@ export class RequestBase {
 
   get(url: string, headers?: Headers) {
     return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('GET', headers))
-    .then(this.checkStatus)
-    .then(res => res.json());
+      .then(this.checkStatus)
+      .then(res => res.json());
   }
 
   post(url: string, data?: any, headers?: Headers) {
     return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('POST', data, headers))
-    .then(this.checkStatus)
-    .then(res => res.json());
+      .then(this.checkStatus)
+      .then(res => res.json());
   }
 
   put(url: string, data?: any, headers?: Headers) {
     return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('PUT', data, headers))
-    .then(this.checkStatus)
-    .then(res => res.json());
+      .then(this.checkStatus)
+      .then(res => res.json());
   }
 
   delete(url: string, data?: any, headers?: Headers) {
     return fetch(this.getFormattedApiUrl(url), this.getRequestInfo('DELETE', data, headers))
-    .then(this.checkStatus)
-    .then(res => res.json());
+      .then(this.checkStatus)
+      .then(res => res.json());
   }
 
-  getFormattedApiUrl(urlfragment: string) {
+  private getFormattedApiUrl(urlfragment: string) {
     if (this.SERIVCE_URL === '' || this.SERIVCE_URL === undefined) {
       return urlfragment;
     }
@@ -45,7 +45,7 @@ export class RequestBase {
   }
 
   private getRequestInfo(method: string, body?: any, headers?: Headers): RequestInit {
-    if (!headers) {
+    if (!headers && !this.headers.get('Authorization')) {
       this.headers.append('Authorization', `bearer ${store.getState().session.token}`);
     }
 
@@ -58,11 +58,11 @@ export class RequestBase {
 
   private checkStatus(response: Response) {
     if (response.status >= 200 && response.status < 300) {
-      return response
+      return response;
     } else {
-      var error = new Error(response.statusText)
-      error['response'] = response
-      throw error
+      const error = new Error(response.statusText);
+      (error as any).response = response;
+      throw error;
     }
   }
 }

@@ -4,7 +4,7 @@ import { negotiators } from '../../store/schema';
 
 export class NegotiatorService extends RequestBase {
   constructor() {
-    super('/api/negotiator');
+    super('api/negotiator');
   }
 
   getDetails() {

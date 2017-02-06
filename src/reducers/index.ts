@@ -5,6 +5,8 @@ import { counterReducer, ICounter } from './counter';
 import { jsonReducer, IJson } from './json';
 import { reconcileReducer, IReconcile } from './reconcile';
 import { sessionReducer, ISession } from './session';
+import { listsReducer, ILists } from './lists';
+
 import * as Entities from '../store/schema';
 
 let reducers = {
@@ -13,11 +15,12 @@ let reducers = {
   routing: routerReducer,
   form: reducer,
   json: jsonReducer,
-  reconcile: reconcileReducer
+  reconcile: reconcileReducer,
+  lists: listsReducer
 };
 
 for (let key in Entities) {
-  if (Entities.hasOwnProperty(key)) {
+  if (Entities.hasOwnProperty(key) && Entities[key].reducer) {
     let obj = { [key]: Entities[key].reducer };
     reducers = Object.assign({}, reducers, obj);
   }
@@ -29,6 +32,7 @@ export interface IAppState {
   session: ISession; 
   json: IJson;
   reconcile: IReconcile;
+  lists: ILists;
 }
 
 export default rootReducer;

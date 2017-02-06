@@ -8,7 +8,7 @@ const nodeEnv = process.env.NODE_ENV;
 const isProd = nodeEnv === 'production';
 
 module.exports = {
-  devtool: isProd ? 'source-map' : 'cheap-module-eval-source-map',
+  devtool: isProd ? 'source-map' : 'source-map',
   entry: {
     vendor: [
       './src/vendor.ts'

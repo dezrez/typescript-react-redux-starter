@@ -16,7 +16,7 @@ export class DezrezEntity extends schema.Entity {
                         ...state[action.payload.Id],
                         ...action.payload
                     }
-                }
+                };
             case 'REMOVE_' + this.keyName:
                 return omit(state, action.payload.Id);
             default:

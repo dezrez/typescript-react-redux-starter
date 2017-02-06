@@ -100,6 +100,11 @@ class App extends React.Component<IAppProps, void> {
               to="/reconcile">
               Reconcile
             </NavigatorItem>
+            <NavigatorItem  
+              isActive={location.pathname} 
+              to="/properties">
+              Property List
+            </NavigatorItem>
           </ul>
 
           <ul className="nav navbar-nav float-xs-right">
