@@ -1,5 +1,6 @@
 import 'core-js';
-import 'ts-helpers';
+
+import 'lodash';
 
 import 'react';
 import 'react-dom';
@@ -13,7 +14,6 @@ import 'redux-auth-wrapper';
 import 'redux-form';
 import 'redux-localstorage';
 import 'react-addons-css-transition-group';
-import 'react-addons-test-utils';
 import 'react-addons-transition-group';
 
 // SCSS, CSS and other Styles

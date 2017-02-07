@@ -10,7 +10,7 @@ import { routerMiddleware } from 'react-router-redux';
 import thunk from 'redux-thunk';
 
 import * as persistState from 'redux-localstorage';
-
+import logger from './logger';
 import promiseMiddleware from '../middleware/promise-middleware';
 import rootReducer from '../reducers';
 
@@ -40,7 +40,7 @@ function _getMiddleware(): Middleware[] {
   ];
 
   if (__DEV__) {
-    middleware = [...middleware, require('./logger')];
+    middleware = [...middleware, logger];
   }
 
   return middleware;
