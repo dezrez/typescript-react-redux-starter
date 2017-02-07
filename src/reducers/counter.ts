@@ -2,7 +2,6 @@ import {
   INCREMENT_COUNTER,
   DECREMENT_COUNTER
 } from '../constants';
-import { fromJS } from 'immutable';
 
 import { Dezrez } from '../models/baseModules';
 
@@ -35,6 +34,7 @@ const INITIAL_STATE: ICounter = {
   property: null
 };
 
+// import { fromJS } from 'immutable';
 // const INITIAL_STATE = fromJS({
 //   count: 0
 // });

@@ -1,4 +1,3 @@
-import { Map } from 'immutable';
 import * as chai from 'chai';
 import fireAction from '../utils/fire-action';
 

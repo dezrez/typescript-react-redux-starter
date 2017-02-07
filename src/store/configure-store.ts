@@ -4,7 +4,6 @@ import {
   compose,
   Middleware,
 } from 'redux';
-import { fromJS } from 'immutable';
 import { browserHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 
@@ -13,7 +12,6 @@ import thunk from 'redux-thunk';
 import * as persistState from 'redux-localstorage';
 
 import promiseMiddleware from '../middleware/promise-middleware';
-import logger from './logger';
 import rootReducer from '../reducers';
 
 declare const __DEV__: boolean; // from webpack
@@ -42,7 +40,7 @@ function _getMiddleware(): Middleware[] {
   ];
 
   if (__DEV__) {
-    middleware = [...middleware, logger];
+    middleware = [...middleware, require('./logger')];
   }
 
   return middleware;

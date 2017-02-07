@@ -16,8 +16,7 @@ export class ListsActions {
         payload: {
           promise: listService.getProperties()
             .then(res => res)
-            .then((res: any) => normalizerService
-                .normalizeAndDispatch(res.Collection, schema.propertyListArray))
+            .then((res: any) => normalizerService.normalizeAndDispatch(res.Collection, schema.propertyListArray))
         }
       });
     };
