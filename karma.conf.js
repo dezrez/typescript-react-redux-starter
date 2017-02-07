@@ -1,7 +1,7 @@
 /*
  * More detailed explanation here: http://karma-runner.github.io/0.13/config/configuration-file.html
  */
-
+const path = require('path');
 var webpackConfig = require("./webpack.config");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -44,6 +44,7 @@ module.exports = function(config) {
         */
       files: [
           'node_modules/babel-polyfill/dist/polyfill.js',
+          'test/index.ts',
           "test/**/*.test.tsx",
           "test/**/*.test.ts"
       ],

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as classNames from 'classnames';
 
-interface IAlertProps extends React.Props<any> {
+export interface IAlertProps extends React.Props<any> {
   isVisible?: boolean;
   status?: string;
   id?: string;

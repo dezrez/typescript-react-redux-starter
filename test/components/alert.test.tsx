@@ -1,20 +1,17 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import * as TestUtils from 'react-addons-test-utils';
-import Alert from '../../src/components/alert';
+import { shallow, ShallowWrapper } from 'enzyme';
+import Alert, {IAlertProps} from '../../src/components/alert';
 
 describe('Alert Component', () => {
-  let renderer: TestUtils.ShallowRenderer;
+  let alertElement: ShallowWrapper<IAlertProps, {}>;
   beforeEach(() => {
-    renderer = TestUtils.createRenderer();
-    renderer.render(<Alert>Loading...</Alert>);
+    alertElement = shallow(<Alert>Loading...</Alert>);
   });
 
   it('should create an alert with the default text', () => {
-    const alert = renderer.getRenderOutput();
-
-    chai.assert.isNotNull(alert);
-    chai.assert.strictEqual(alert.props.children, 'Loading...');
+    chai.assert.isNotNull(alertElement);
+    chai.assert.strictEqual(alertElement.props().children, 'Loading...');
   });
 });
