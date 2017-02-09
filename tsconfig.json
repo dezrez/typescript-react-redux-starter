@@ -10,7 +10,8 @@
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": true,
-    "noEmitHelpers": false,
+    "importHelpers": true,
+    "noEmitHelpers": true,
     "types": [
       "node","mocha"
     ]

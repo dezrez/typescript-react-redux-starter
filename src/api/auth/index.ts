@@ -1,9 +1,10 @@
-import { RequestBase } from '../server/';
+'use strict';
+import RequestBase from '../';
 import { Config } from '../../constants';
 
 export class AuthenticationService extends RequestBase {
   constructor() {
-    super('');
+    super();
   }
 
   getToken(oAuthCode: string): Promise<{}> {

@@ -1,4 +1,4 @@
-import { RequestBase } from '../server';
+import RequestBase from '../';
 import { normalize } from 'normalizr';
 import { negotiators } from '../../store/schema';
 

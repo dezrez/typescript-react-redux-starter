@@ -1,7 +1,8 @@
-import {store} from '../../';
-import { Config } from '../../constants';
+'use strict';
+import { store } from '../';
+import { Config } from '../constants';
 
-export class RequestBase {
+export default class RequestBase {
   private BASE_URL = Config.ApiUrl;
   private SERIVCE_URL: string;
   headers = new Headers({
@@ -9,7 +10,7 @@ export class RequestBase {
     'Rezi-Api-Version': '1.0'
   });
 
-  constructor(serviceUrl: string) {
+  constructor(serviceUrl?: string) {
     this.SERIVCE_URL = serviceUrl;
   }
 

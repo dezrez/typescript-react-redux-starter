@@ -2,6 +2,7 @@
  * More detailed explanation here: http://karma-runner.github.io/0.13/config/configuration-file.html
  */
 const path = require('path');
+const loaders = require('./webpack/loaders');
 var webpackConfig = require("./webpack.config");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -43,10 +44,9 @@ module.exports = function(config) {
         * http://karma-runner.github.io/0.13/config/files.html
         */
       files: [
-          'node_modules/babel-polyfill/dist/polyfill.js',
-          'test/index.ts',
-          "test/**/*.test.tsx",
-          "test/**/*.test.ts"
+          'test/index.js',
+          // 'test/**/*.test.tsx',
+          // 'test/**/*.test.ts'
       ],
 
       /*
@@ -76,8 +76,10 @@ module.exports = function(config) {
         * npm module to be npm installed and added to the "plugins" field.
         */
       preprocessors: {
-          "test/**/*.test.tsx": ["webpack"],
-          "test/**/*.test.ts": ["webpack"] // Using karma-webpack npm module
+        'src/**/*.(tsx|ts)': ['webpack'],
+        "test/index.js": ["webpack"]
+          //"test/**/*.test.tsx": ["webpack"],
+          //"test/**/*.test.ts": ["webpack"] // Using karma-webpack npm module
       },
 
       /*
@@ -103,25 +105,35 @@ module.exports = function(config) {
         * purposes, you can specify that here.
         */
       webpack: {
-          module: webpackConfig.module,
+          entry: './test/index.js',
+          output: null,
+          module: {
+            rules: [
+              {
+                test: /\.ts(x?)$/,
+                loader: 'awesome-typescript-loader',
+                exclude: /node_modules/,
+              },
+              loaders.html,
+              loaders.css,
+              loaders.scss,
+              loaders.svg,
+              loaders.eot,
+              loaders.woff,
+              loaders.woff2,
+              loaders.ttf,
+              loaders.json,
+              loaders.png
+            ],
+          },
           resolve: webpackConfig.resolve,
           plugins: [
-            new CheckerPlugin(),
             new webpack.DefinePlugin({
               __DEV__: process.env.NODE_ENV !== 'production',
               __TEST__: JSON.stringify(process.env.TEST || false),
-              __AUTH_URL__: JSON.stringify(process.env.REZI_ENV || null),
               __REZI_ENV__: JSON.stringify(process.env.REZI_ENV || null),
               __REDIRECT__: JSON.stringify(process.env.REDIRECT_URL || null),
-              'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-            }),
-            new CopyWebpackPlugin([
-              { from: 'src/assets', to: 'assets' },
-            ]),
-            new webpack.NamedModulesPlugin(),
-            new webpack.LoaderOptionsPlugin({
-              minimize: true,
-              debug: false
+              'process.env.NODE_ENV': JSON.stringify('test'),
             })
           ],
           externals: {
@@ -129,6 +141,10 @@ module.exports = function(config) {
             'react/lib/ExecutionEnvironment': 'true',
             'react/addons': 'true'
           },
+      },
+
+      webpackMiddleware: {
+        noInfo: true,
       }
   });
 };

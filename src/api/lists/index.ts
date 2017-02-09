@@ -1,4 +1,4 @@
-import { RequestBase } from '../server';
+import RequestBase from '../';
 
 export class ListService extends RequestBase {
   constructor() {
