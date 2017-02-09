@@ -76,7 +76,6 @@ module.exports = function(config) {
         * npm module to be npm installed and added to the "plugins" field.
         */
       preprocessors: {
-        'src/**/*.(tsx|ts)': ['webpack'],
         "test/index.js": ["webpack"]
           //"test/**/*.test.tsx": ["webpack"],
           //"test/**/*.test.ts": ["webpack"] // Using karma-webpack npm module
@@ -105,7 +104,7 @@ module.exports = function(config) {
         * purposes, you can specify that here.
         */
       webpack: {
-          entry: './test/index.js',
+          entry: './src/index.tsx',
           output: null,
           module: {
             rules: [
